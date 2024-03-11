@@ -4,6 +4,7 @@ import os
 from os import listdir
 from os.path import isfile, join
 from pathlib import Path
+import matplotlib.pyplot as plt
 
 dataset_folder = './data'
 souce_data_folder = './source'
@@ -78,6 +79,15 @@ def convert(filepath):
     return log_mel_spectrogram
 
 
+def show_spectro(mel_spectrogram):
+    fig, ax = plt.subplots()
+    img = librosa.display.specshow(
+        mel_spectrogram, x_axis='time', y_axis='linear', ax=ax)
+    ax.set(title='spectro')
+    fig.colorbar(img, ax=ax, format="%+2.f")
+    plt.show()
+
+
 def clean_data(mode='train', to_clean='all'):
     to_delete = '*'
     if to_clean == 'danil':
@@ -112,7 +122,7 @@ mode = 'train'
 if __name__ == '__main__':
     clean_data()
     modes = ['train', 'test']
-    
+
     for cur_mode in modes:
         if cur_mode == 'train':
             for i in range(1, 61):

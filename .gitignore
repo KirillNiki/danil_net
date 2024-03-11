@@ -1,6 +1,4 @@
 __pycache__/
 .vscode/
 source/
-tests/
-model_sub.keras
 model.keras
